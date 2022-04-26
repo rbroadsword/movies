@@ -60,3 +60,8 @@ function price(userAge, showTime, movieTitle) {
 
 //UI 
 
+$(document).ready(function() {
+  $("form#movie-picker").submit(function(event) {
+    event.preventDefault();
+    const 
+  }
