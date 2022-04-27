@@ -11,6 +11,43 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <div class="container">
+    <form id="movie-picker">
+      <div class="form-group">
+        <label for="movie">Pick a movie</label>
+        <select id="movieOptions">
+          <option value="Good">Good</option>
+          <option value="Better">Better</option>
+          <option value="Best">Best</option>
+          <option value="Ok">OK</option>
+          <option value="Soso">Soso</option>
+          <option value="Alright">Alright</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="movie-time">Select a showing</label>
+        <select id="time">
+          <option value="9">9:00am</option>
+          <option value="12">12:00pm</option>
+          <option value="14">2:00pm</option>
+          <option value="17">5:00pm</option>
+          <option value="19">7:00pm</option>
+          <option value="22">10:00pm</option>
+        </select>
+      </div>
+    <div class="form-group" >
+      <label for="age">What's your age?</label>
+      <input type="number" class="form-control" id="viewerAge" required>
+    </div>
+
+    <button class="submit btn btn-primary">Submit</button>
+
+    </form>
+  </div>
+
+  <div id="total">
+    <p>Your have selected <span class="movie-picker"></span>! Your showtime is <span class="time"></span>! Your total price is $<span class="total"></span>.
+  </div>
+
 </body>
 </html>

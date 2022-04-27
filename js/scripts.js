@@ -1,67 +1,85 @@
-function Ticket(movieTitle, time, userAge, cost) {
+function Ticket(movieTitle, time, userAge) {
   this.movieTitle = movieTitle; 
   this.time = time; 
   this.userAge = userAge; 
-  this.cost = cost;
+  this.cost = 0;
 
 }
 
 Ticket.prototype.movie = function(movieTitle) {
   let movie = movieTitle; 
-  console.log(movie); 
-  const firstRelease = 5; 
-  const nonFirstRelease = 2; 
-  const aMovies = ["good", "better", "best" ]; 
-  const bMovies = ["ok", "soso", "alright"]; 
+  console.log(movie);  
+  const aMovies = ["Good", "Better", "Best" ]; 
+  const bMovies = ["Ok", "Soso", "Alright"]; 
   for (let i = 0; i <= aMovies.length -1; i++ ) {
     for (let b = 0; b <= bMovies.length -1; b++){ 
       if (aMovies[i].includes(movie)){
-        return firstRelease;
-        console.log(movie);
+        this.cost += 5;
+        break;
       }else if (bMovies[b].includes(movie)) {
-        return nonFirstRelease;
-        console.log(movie); 
-      } else {
-        alert("your movie does not exist")
-      }
+        this.cost += 2;
+        break; 
+      } 
     }   
   }
 }
 
 Ticket.prototype.showTime = function(time) {
   let showTime = time;
-  const primeTime = 5;
-  const matinee = 2;
   if (showTime >= 19) {
-    return primeTime;
+    this.cost += 2;
   } else if (showTime < 19) {
-    return matinee;
+    this.cost += 5;
   }
 }
 
 Ticket.prototype.age = function(userAge) {
   let age = userAge;
-  const child = 20;
-  const adult = 10; 
-  const senior = 5;
   if (age <= 15) {
-    return child;
+    this.cost += 20; 
   } else if (age > 15 && age <= 55) {
-    return adult;
+    this.cost += 10;
   } else if (age > 55) {
-    return senior;
+    this.cost += 5;
   }
 }
 
-function price(userAge, showTime, movieTitle) {
-  let price = userAge + showTime + movieTitle;
-  return price; 
-}
-
 //UI 
+function timeConverter (showTime) {
+  let newTime = showTime;
+  let finalTime = 0; 
+  if (newTime > 12) {
+    return finalTime = newTime - 12 + "pm"; 
+  }else {
+    return newTime; 
+  }
+}
 
 $(document).ready(function() {
   $("form#movie-picker").submit(function(event) {
     event.preventDefault();
-    const 
-  }
+
+    const movieOptions = $("select#movieOptions").val(); 
+    const time = parseInt($("select#time").val());
+    const viewerAge = parseInt($("#viewerAge").val());
+
+    let newTicket = new Ticket(movieOptions, time, viewerAge);
+    console.log(newTicket);  
+    newTicket.movie(movieOptions); 
+    newTicket.showTime(time); 
+    newTicket.age(viewerAge); 
+
+    const finalTime = timeConverter(time); 
+    console.log(finalTime); 
+    const totalPrice = newTicket.cost; 
+    $("#total").show();
+    $(".movie-picker").text(movieOptions);
+    $(".time").text(finalTime);
+    $(".total").text(totalPrice);
+    $("#movie-picker").each(function(){
+      this.reset();
+  });
+    console.log(totalPrice);
+    console.log(newTicket); 
+  });
+});
