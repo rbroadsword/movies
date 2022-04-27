@@ -63,14 +63,12 @@ $(document).ready(function() {
     const time = parseInt($("select#time").val());
     const viewerAge = parseInt($("#viewerAge").val());
 
-    let newTicket = new Ticket(movieOptions, time, viewerAge);
-    console.log(newTicket);  
+    let newTicket = new Ticket(movieOptions, time, viewerAge); 
     newTicket.movie(movieOptions); 
     newTicket.showTime(time); 
     newTicket.age(viewerAge); 
 
     const finalTime = timeConverter(time); 
-    console.log(finalTime); 
     const totalPrice = newTicket.cost; 
     $("#total").show();
     $(".movie-picker").text(movieOptions);
@@ -78,8 +76,6 @@ $(document).ready(function() {
     $(".total").text(totalPrice);
     $("#movie-picker").each(function(){
       this.reset();
-  });
-    console.log(totalPrice);
-    console.log(newTicket); 
+    });
   });
 });
